@@ -5,12 +5,13 @@
  * @email: 342766475@qq.com
  * @Date: 2018-07-14 11:06:25
  * @Last Modified by: pycoder.Junting
- * @Last Modified time: 2018-07-14 21:03:40
+ * @Last Modified time: 2018-07-14 21:31:27
  */
 const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 // 校验是否是生产环境
 const isProd = process.env.NODE_ENV === 'production'
@@ -21,7 +22,7 @@ module.exports = {
     devtool: isProd ? false : '#cheap-module-source-map',
     //构建后输出目录
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, '../dist'),
         filename: '[name].[hash:8].js'
     },
     // 解析配置
@@ -73,7 +74,7 @@ module.exports = {
     // 相关插件配置
     plugins: isProd
     ? [ // 生产环境
-        new webpack.optimize.UglifyJsPlugin({ // 优化，压缩代码； webpack4.X 开始，压缩称为了 wbepack 内置插件了，不需要再引用了
+        new UglifyJsPlugin({
             uglifyOptions: {
                 compress: { warnings: false }
             }
