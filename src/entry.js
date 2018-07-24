@@ -1,2 +1,3 @@
-import './assets/styles/reset.css'
-import './assets/styles/variable.scss'
+import 'styles/reset.css'
+import 'styles/iconfont.css'
+import 'styles/index.less'

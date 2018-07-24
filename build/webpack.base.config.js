@@ -5,7 +5,7 @@
  * @email: 342766475@qq.com
  * @Date: 2018-07-14 11:06:25
  * @Last Modified by: pycoder.Junting
- * @Last Modified time: 2018-07-14 21:31:27
+ * @Last Modified time: 2018-07-24 15:09:59
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -15,6 +15,11 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 // 校验是否是生产环境
 const isProd = process.env.NODE_ENV === 'production'
+
+// 解析路径
+function resolve (dir) {
+    return path.join(__dirname, '..', dir)
+}
 
 module.exports = {
     mode: isProd ? process.env.NODE_ENV : 'development',
@@ -27,7 +32,11 @@ module.exports = {
     },
     // 解析配置
     resolve: {
-
+        extensions: ['.js'],
+        alias: {
+            '@': resolve('src'),
+            'styles': resolve('src/assets/styles')
+        }
     },
     // 处理不同类型模块的配置
     module: {
@@ -42,7 +51,7 @@ module.exports = {
             },
             // css
             {
-                test: /\.(sass|css)$/,
+                test: /\.(less|css)$/,
                 use: isProd ? ExtractTextPlugin.extract({
                     use: [
                         {
@@ -50,14 +59,14 @@ module.exports = {
                             options: { minimize: true }
                         },
                         { loader: 'postcss-loader'},
-                        { loader: 'sass-loader'}
+                        { loader: 'less-loader'}
                     ],
                     fallback:'style-loader'
                 }) : [
                     { loader: 'style-loader'},
                     { loader: 'css-loader'},
                     { loader: 'postcss-loader' },
-                    { loader: 'sass-loader'}
+                    { loader: 'less-loader'}
                 ]
             },
             // file
@@ -67,6 +76,16 @@ module.exports = {
                 options: {
                     limit: 10000, // 字节限制 10000 一下的进行 base64
                     name: '[name].[ext]?[hash:8]'
+                }
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192,
+                        name: 'static/[name].[ext]?[hash:6]'
+                    }
                 }
             }
         ]

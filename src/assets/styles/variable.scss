@@ -1,10 +1,14 @@
-/**
+sc/**
  * css 全局变量
  * @fileOverview
  * @author pycoder.Junting
  * @email: 342766475@qq.com
  * @Date: 2018-07-14 21:45:46
  * @Last Modified by: pycoder.Junting
- * @Last Modified time: 2018-07-14 21:48:21
+ * @Last Modified time: 2018-07-24 14:48:38
  */
- $bgColor: #00bcd4
+$bgColor: #00bcd4
+
+body {
+    background: $bgColor;
+}
