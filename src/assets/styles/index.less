@@ -9,6 +9,9 @@ body {
     background-color: @bgColor;
     padding-top: 5px;
     overflow: auto;
+    @media screen and (max-width: 1024px) {
+        padding-top: 0;
+    }
 }
 
 // 最后更新时间
@@ -22,6 +25,15 @@ body {
     text-align: right;
     font-size: 12px;
     color: #bbb;
+    @media screen and (max-width: 1024px) {
+        width: auto;
+        top: auto;
+        left: 12px;
+        bottom: 8px;
+        transform: translateX(0);
+        text-align: left;
+        color: #bbb;
+    }
 }
 
 // 承载容器
@@ -35,6 +47,11 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 15px #c0c0c0;
     overflow: hidden;
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
 }
 
 // header
@@ -43,7 +60,9 @@ body {
     color: #fff;
     background-color: @color-main;
     overflow: hidden;
-
+    @media screen and (max-width: 720px) {
+        padding: 25px;
+    }
     .title {
         padding-bottom: 5px;
         margin-bottom: 5px;
@@ -58,6 +77,10 @@ body {
     .info,
     .contact {
         width: 50%;
+        @media screen and (max-width: 720px) {
+            width: 100%;
+            text-align: center;
+        }
     }
     .name,
     .info {
@@ -74,17 +97,35 @@ body {
             font-family: @font-family-title;
             font-weight: 500;
             letter-spacing: 5px;
+            @media screen  and (max-width: 720px){
+                margin-top: 10px;
+                letter-spacing: 0;
+            }
         }
         small {
             box-sizing: border-box;
             padding-left: 10px;
             font-size: 24px;
+            @media screen and (max-width: 720px) {
+                display: block;
+                padding-left: 0;
+                font-size: 20px;
+                line-height: 1;
+            }
         }
     }
     .job {
+        @media screen and (max-width: 720px) {
+            text-align: center;
+        }
         h2 {
             display: inline-block;
             font-size: 24px;
+            @media screen and (max-width: 720px){
+                margin: 5px auto 0;
+                padding: 10px;
+                border-top: 1px solid darken(@color-main, 2%);
+            }
         }
     }
     .info {
@@ -104,8 +145,15 @@ body {
         padding-right: 5px;
         ul {
             margin: 8px 0 4px;
+            @media screen and (max-width: 720px){
+                margin: 16px 0 0;
+                text-align: center;
+            }
             > li {
                 height: 22px;
+                @media screen and (max-width: 720px) {
+                    display: inline-block;
+                }
                 > a {
                     font-family: @font-family-title;
                     font-size: 14px;
@@ -114,25 +162,39 @@ body {
                     &:hover {
                         color: #e8e8e8;
                     }
-                    // .contact-link {}
+                    .contact-link {
+                        @media screen and (max-width: 720px) {
+                            display: none;
+                        }
+                    }
                     .iconfont {
                         margin-left: 6px;
+                        @media screen and (max-width: 720px) {
+                            font-size: 20px;
+                        }
                     }
                 }
             }
         }
+
     }
 }
 
 .content {
+    overflow: hidden;
     min-height: 200px;
     box-sizing: border-box;
     padding: 20px 30px 50px;
-
+    @media screen and (max-width: 720px) {
+        padding: 20px 15px 50px;
+    }
     // 基础两栏布局
     .content-left,
     .content-right {
         width: 50%;
+        @media screen and (max-width: 720px) {
+            width: 100%;
+        }
     }
     .content-left {
         float: left;
@@ -202,10 +264,20 @@ body {
             float: left;
             display: inline-block;
             width: 25%;
+            @media screen and (max-width: 720px) {
+                width: 100%;
+                margin-bottom: 5px;
+            }
         }
         .item-more {
             float: right;
             margin-left: 5px;
+            @media screen and (max-width: 720px) {
+                position: absolute;
+                top: 10px;
+                right: 0;
+                margin-top: 1px;
+            }
         }
         .item-name {
             float: left;
@@ -234,10 +306,24 @@ body {
             padding: 0 3px;
             background-color: #f6f6f6;
         }
+        em {
+            display: inline-block;
+            font-family: Menlo, @font-family;
+            font-size: 12px;
+            line-height: 14px;
+            border: 1px solid #d1d1d1;
+            border-radius: 3px;
+            margin: 2px;
+            padding: 0 3px;
+            background-color: #f7f7f7;
+        }
     }
     .work {
         .item-time {
             width: 32%;
+            @media screen and (max-width: 720px) {
+                width: 100%;
+            }
         }
     }
     .skill {
@@ -251,10 +337,29 @@ body {
         }
     }
     .project {
+        .item-name {
+            font-weight: 550;
+        }
         .section-content {
             margin-bottom: 5px;
             line-height: 24px;
         }
+    }
+
+    .prize {
+        .item-hd {
+            padding: 12px 0 0;
+        }
+        .item-time {
+            width: 15%;
+            @media screen and (max-width: 720px) {
+                width: 100%;
+            }
+        }
+    }
+
+    .personal {
+
     }
 }
 
@@ -272,4 +377,83 @@ body {
         color: #fff;
         background-color: @color-main;
     }
+}
+
+.pdf {
+    display: inline-block;
+    position: fixed;
+    bottom: 6px;
+    left: 50%;
+    margin-left: 520px;
+    z-index: 10;
+    padding: 0 8px;
+    border-radius: 3px;
+    background-color: @color-main;
+    font-size: 16px;
+    line-height: 26px;
+    color: #FFF;
+    @media screen and (max-width: 1246px) {
+        left: auto;
+        right: 8px;
+        margin-left: 0;
+    }
+}
+
+footer {
+    text-align: center;
+    &.github-footer {
+        display: block;
+    }
+    &.print-footer {
+        display: none;
+    }
+    .footer-link {
+        display: inline-block;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        color: #bbb;
+        .iconfont {
+            vertical-align: middle;
+        }
+        @media screen and (max-width: 1024px) {
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+    }
+}
+
+// 滚动条样式
+::-webkit-scrollbar {
+    background-color: #f1f1f1;
+    overflow: visible;
+    width: 3px;
+    height: 3px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .2);
+    background-clip: padding-box;
+    min-height: 15px;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+}
+::-webkit-scrollbar-thumb:vertical:hover {
+    background-color: rgba(0, 0, 0, .3);
+}
+::-webkit-scrollbar-thumb:vertical:active {
+    background-color: rgba(0, 0, 0, .5);
+}
+::-webkit-scrollbar-button {
+    height: 0;
+    width: 0;
+}
+::-webkit-scrollbar-track {
+    background-clip: padding-box;
+    border: solid transparent;
+    border-width: 0 0 0 4px;
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+::selection {
+    background: #d1d1d1;
 }
