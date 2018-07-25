@@ -5,7 +5,7 @@
  * @email: 342766475@qq.com
  * @Date: 2018-07-14 11:06:25
  * @Last Modified by: pycoder.Junting
- * @Last Modified time: 2018-07-24 15:09:59
+ * @Last Modified time: 2018-07-25 23:29:47
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -27,7 +27,7 @@ module.exports = {
     devtool: isProd ? false : '#cheap-module-source-map',
     //构建后输出目录
     output: {
-        path: path.resolve(__dirname, '../dist'),
+        path: path.resolve(__dirname, '../docs'),
         filename: '[name].[hash:8].js'
     },
     // 解析配置
