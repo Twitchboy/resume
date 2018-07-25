@@ -600,6 +600,25 @@ body {
     width: 100%;
   }
 }
+.content .personal .section-content {
+  margin-bottom: 5px;
+  line-height: 24px;
+}
+.content .personal strong {
+  display: inline;
+  line-height: 18px;
+}
+.content .personal em {
+  display: inline-block;
+  font-family: Menlo, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', '\5FAE\8F6F\96C5\9ED1', Arial, sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  margin: 2px;
+  padding: 0 3px;
+  background-color: #f7f7f7;
+}
 .btn {
   display: inline-block;
   padding: 0 5px;
