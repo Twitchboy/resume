@@ -5,7 +5,7 @@
  * @email: 342766475@qq.com
  * @Date: 2018-07-14 11:06:25
  * @Last Modified by: pycoder.Junting
- * @Last Modified time: 2018-07-26 21:02:09
+ * @Last Modified time: 2018-07-26 23:26:48
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -16,7 +16,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = merge(base, {
     entry: {
         app: './src/entry.js',
-        vender: './src/vender.js'
+        html2canvas: 'html2canvas',
+        jsPDF: 'jspdf'
     },
     // 本地服务器
     devServer: {
@@ -36,7 +37,7 @@ const config = merge(base, {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve(__dirname, '../src/index.template.html')
-        }),
+        })
     ]
 })
 

@@ -5,7 +5,7 @@
  * @email: 342766475@qq.com
  * @Date: 2018-07-14 11:06:25
  * @Last Modified by: pycoder.Junting
- * @Last Modified time: 2018-07-26 21:01:59
+ * @Last Modified time: 2018-07-26 23:42:53
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -29,6 +29,10 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../docs'),
         filename: '[name].[hash:8].js'
+    },
+    externals: {
+        html2canvas: 'html2canvas',
+        jsPDF: 'jspdf'
     },
     // 解析配置
     resolve: {
@@ -103,24 +107,42 @@ module.exports = {
         new webpack.optimize.ModuleConcatenationPlugin(),
         new ExtractTextPlugin({ // 提取 CSS
             filename: 'common.[chunkhash:8].css'
+        }),
+        new webpack.ProvidePlugin({
+            html2canvas: 'html2canvas',
+            jsPDF: 'jspdf'
         })
       ]
     : [ // 开发环境
-        new FriendlyErrorsPlugin() //能够更好在终端看到 webapck 运行的警告和错误
+        new FriendlyErrorsPlugin(), //能够更好在终端看到 webapck 运行的警告和错误
+        new webpack.ProvidePlugin({
+            html2canvas: 'html2canvas',
+            jsPDF: 'jspdf'
+        })
       ],
     // 优化，提取三方库
     optimization: {
         splitChunks: {
-        cacheGroups: {
-            vendor: { // 抽离第三方插件
-                test: /node_modules/, // 指定是node_modules下的第三方包
-                chunks: 'initial',
-                name: 'vendor', // 打包后的文件名，任意命名
-                // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
-                priority: 10
-            }
-        }
+            cacheGroups: {
+                // vendor: { // 抽离第三方插件
+                //     test: /node_modules/, // 指定是node_modules下的第三方包
+                //     chunks: 'initial',
+                //     name: 'vendor', // 打包后的文件名，任意命名
+                //     // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
+                //     priority: 10
+                // }
+
+                html2canvas:{ // 键值可以自定义
+                    chunks:'initial', //
+                    name:'html2canvas', // 入口的entry的key
+                    enforce:true   // 强制
+                },
+                jsPDF:{
+                    chunks:'initial',
+                    name:'jspdf',
+                    enforce:true
+                }
         }
     }
-
+    }
 }

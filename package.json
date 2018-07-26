@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dll": "cross-env NODE_ENV=production webpack --config build/webpack.dll.config.js --progress --hide-modules",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.config.js --progress --hide-modules",
     "build": "rimraf docs && cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js --progress --hide-modules"
   },
