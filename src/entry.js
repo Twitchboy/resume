@@ -1,8 +1,11 @@
 import 'styles/reset.css'
 import 'styles/iconfont.css'
 import 'styles/index.less'
-import html2canvas from 'html2canvas'
-import  jsPDF from 'jspdf'
+// import html2canvas from 'html2canvas'
+// import  jsPDF from 'jspdf'
+
+import(/* webpackPreload: true */ 'html2canvas');
+import(/* webpackPreload: true */ 'jspdf');
 
 var downPdf = document.getElementById("renderPdf");
 downPdf.onclick = function() {
