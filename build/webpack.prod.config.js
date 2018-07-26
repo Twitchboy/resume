@@ -5,14 +5,13 @@
  * @email: 342766475@qq.com
  * @Date: 2018-07-14 11:06:25
  * @Last Modified by: pycoder.Junting
- * @Last Modified time: 2018-07-26 23:26:24
+ * @Last Modified time: 2018-07-27 00:23:08
  */
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const base = require('./webpack.base.config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CompressionPlugin = require("compression-webpack-plugin")
 
 const config = merge(base, {
     entry: {

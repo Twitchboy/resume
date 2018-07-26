@@ -5,14 +5,14 @@
  * @email: 342766475@qq.com
  * @Date: 2018-07-14 11:06:25
  * @Last Modified by: pycoder.Junting
- * @Last Modified time: 2018-07-26 23:42:53
+ * @Last Modified time: 2018-07-27 00:24:20
  */
 const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 // 校验是否是生产环境
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -29,10 +29,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../docs'),
         filename: '[name].[hash:8].js'
-    },
-    externals: {
-        html2canvas: 'html2canvas',
-        jsPDF: 'jspdf'
     },
     // 解析配置
     resolve: {
@@ -111,6 +107,15 @@ module.exports = {
         new webpack.ProvidePlugin({
             html2canvas: 'html2canvas',
             jsPDF: 'jspdf'
+        }),
+        new CompressionWebpackPlugin({ //gzip 压缩
+            asset: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: new RegExp(
+                '\\.(js|css)$'    //压缩 js 与 css
+            ),
+            threshold: 10240,
+            minRatio: 0.8
         })
       ]
     : [ // 开发环境
@@ -118,6 +123,15 @@ module.exports = {
         new webpack.ProvidePlugin({
             html2canvas: 'html2canvas',
             jsPDF: 'jspdf'
+        }),
+        new CompressionWebpackPlugin({ //gzip 压缩
+            asset: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: new RegExp(
+                '\\.(js|css)$'    //压缩 js 与 css
+            ),
+            threshold: 10240,
+            minRatio: 0.8
         })
       ],
     // 优化，提取三方库
