@@ -5,7 +5,7 @@
  * @email: 342766475@qq.com
  * @Date: 2018-07-14 11:06:25
  * @Last Modified by: pycoder.Junting
- * @Last Modified time: 2018-07-25 23:29:47
+ * @Last Modified time: 2018-07-26 15:06:25
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -47,7 +47,8 @@ module.exports = {
                 include: [ // src 目录下的才需要经过 babel-loader 处理
                     path.resolve(__dirname, 'src')
                 ],
-                loader: 'babel-loader',
+                exclude: /node_modules/,
+                loader: 'babel-loader'
             },
             // css
             {
